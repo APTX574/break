@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Date;
@@ -24,7 +25,7 @@ public class TestController {
 
 
     @ResponseBody
-    @RequestMapping("/test")
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
     String getTestByName(@RequestBody String body) {
         JSONObject json = JSONObject.parseObject(body);
         List<Test> testList = testService.getTestByName(json.getString("name"));
@@ -32,7 +33,7 @@ public class TestController {
     }
 
     @ResponseBody
-    @RequestMapping("/insert")
+    @RequestMapping(value = "/inserttest", method = RequestMethod.POST)
     String insertTest(@RequestBody String body) {
         JSONObject json = JSONObject.parseObject(body);
         Test test = new Test();

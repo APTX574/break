@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.dao.ContractMapper">
+    <insert id="insertContract" keyProperty="id">
+        insert into contract(title, reason, type, status, create_time)
+        values (#{title}, #{reason}, #{type}, #{status}, #{createTime})
+    </insert>
+    <update id="updateContract">
+        update contract
+        set status=#{status}
+        where id = #{id}
+    </update>
+    <select id="getContract" resultType="com.example.demo.entity.Contract">
+        select id, title, reason, type, status, create_time
+        from contract
+        order by create_time desc
+    </select>
+    <select id="getContractById" resultType="com.example.demo.entity.Contract">
+        select id, title, reason, type, status, create_time
+        from contract
+        where id = #{id}
+    </select>
+    <select id="getContractByTitle" resultType="com.example.demo.entity.Contract">
+        select id, title, reason, type, status, create_time
+        from contract
+        where title like #{title}
+    </select>
+</mapper>

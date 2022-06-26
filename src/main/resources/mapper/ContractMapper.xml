@@ -25,4 +25,9 @@
         from contract
         where title like #{title}
     </select>
+    <select id="getContractByStatus" resultType="com.example.demo.entity.Contract">
+        select id, title, reason, type, status, create_time
+        from contract
+        where status = #{status}
+    </select>
 </mapper>

@@ -2,8 +2,10 @@ package com.example.demo.service;
 
 import com.example.demo.dao.ContractMapper;
 import com.example.demo.entity.Contract;
+import com.example.demo.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import reactor.core.Fuseable;
 
 import java.util.List;
 
@@ -12,7 +14,7 @@ import java.util.List;
  * @date 2022/06/26 22:03
  */
 @Service
-public class ContractService {
+public class ContractService implements Constant {
     @Autowired
     private ContractMapper contractMapper;
 
@@ -35,6 +37,17 @@ public class ContractService {
     }
 
     public List<Contract> getContractByTitle(String title) {
-        return contractMapper.getContractByTitle("@" + title + "@");
+        System.out.println(title);
+        return contractMapper.getContractByTitle("%" + title + "%");
+    }
+    public List<Contract> getUnconfirmedContract() {
+        return contractMapper.getContractByStatus(STATUS_UNCONFIRMED);
+    }
+    public List<Contract> getConfirmedContract() {
+        return contractMapper.getContractByStatus(STATUS_CONFIRMED);
+
+    }
+    public List<Contract> getRefuseContract() {
+        return contractMapper.getContractByStatus(STATUS_REFUSE);
     }
 }

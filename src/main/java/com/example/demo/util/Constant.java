@@ -9,5 +9,7 @@ public interface Constant {
 
     int STATUS_CONFIRMED = 1;
 
+    int STATUS_REFUSE = 2;
+
     int TYPE_TYPE1 = 0;
 }

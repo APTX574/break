@@ -67,5 +67,45 @@ public class ContractController implements Constant {
         return Result.newSuccessfulResult(map);
     }
 
+    @ResponseBody
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public String update(@RequestBody String body) {
+        JSONObject json = JSONObject.parseObject(body);
+        int id = json.getInteger("id");
+        int status = json.getInteger("status");
+        if (status != STATUS_UNCONFIRMED && status != STATUS_CONFIRMED && status != STATUS_REFUSE) {
+            status = STATUS_UNCONFIRMED;
+        }
+        Contract contract = new Contract();
+        contract.setStatus(status).setId(id);
+        contractService.updateContract(contract);
+        return Result.newSuccessfulResult("修改成功");
+    }
 
+    @ResponseBody
+    @RequestMapping(value = "get/unconfirmed", method = RequestMethod.POST)
+    public String getContractUnCon(@RequestBody String body) {
+        List<Contract> contract = contractService.getUnconfirmedContract();
+        Map<String, Object> map = new HashMap<>();
+        map.put("contractList", contract);
+        return Result.newSuccessfulResult(map);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "get/confirmed", method = RequestMethod.POST)
+    public String getContractCon(@RequestBody String body) {
+        List<Contract> contract = contractService.getConfirmedContract();
+        Map<String, Object> map = new HashMap<>();
+        map.put("contractList", contract);
+        return Result.newSuccessfulResult(map);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "get/refuse", method = RequestMethod.POST)
+    public String getContractRef(@RequestBody String body) {
+        List<Contract> contract = contractService.getRefuseContract();
+        Map<String, Object> map = new HashMap<>();
+        map.put("contractList", contract);
+        return Result.newSuccessfulResult(map);
+    }
 }

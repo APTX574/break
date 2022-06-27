@@ -15,39 +15,50 @@ import java.util.List;
  */
 @Service
 public class ContractService implements Constant {
-    @Autowired
-    private ContractMapper contractMapper;
+	@Autowired
+	private ContractMapper contractMapper;
 
-    public int insertContract(Contract contract) {
-        contractMapper.insertContract(contract);
-        return 1;
-    }
+	public int insertContract(Contract contract) {
+		contractMapper.insertContract(contract);
+		return 1;
+	}
 
-    public int updateContract(Contract contract) {
-        contractMapper.updateContract(contract);
-        return 1;
-    }
+	public int updateContract(Contract contract) {
+		contractMapper.updateContract(contract);
+		return 1;
+	}
 
-    public List<Contract> getContract() {
-        return contractMapper.getContract();
-    }
+	public List<Contract> getContract() {
+		return contractMapper.getContract();
+	}
 
-    public List<Contract> getContractById(int id) {
-        return contractMapper.getContractById(id);
-    }
+	public List<Contract> getContractById(int id) {
+		return contractMapper.getContractById(id);
+	}
 
-    public List<Contract> getContractByTitle(String title) {
-        System.out.println(title);
-        return contractMapper.getContractByTitle("%" + title + "%");
-    }
-    public List<Contract> getUnconfirmedContract() {
-        return contractMapper.getContractByStatus(STATUS_UNCONFIRMED);
-    }
-    public List<Contract> getConfirmedContract() {
-        return contractMapper.getContractByStatus(STATUS_CONFIRMED);
+	public List<Contract> getContractByTitle(String title) {
+		System.out.println(title);
+		return contractMapper.getContractByTitle("%" + title + "%");
+	}
 
-    }
-    public List<Contract> getRefuseContract() {
-        return contractMapper.getContractByStatus(STATUS_REFUSE);
-    }
+	public List<Contract> getUnconfirmedContract() {
+		return contractMapper.getContractByStatus(STATUS_UNCONFIRMED);
+	}
+
+	public List<Contract> getConfirmedContract() {
+		return contractMapper.getContractByStatus(STATUS_REMAKE_UNCONFIRMED);
+
+	}
+
+	public List<Contract> getRefuseContract() {
+		return contractMapper.getContractByStatus(STATUS_REFUSE);
+	}
+
+	public List<Contract> getByStatus(int status) {
+		if (status == -1) {
+			return getContract();
+		}
+		return contractMapper.getContractByStatus(status);
+
+	}
 }

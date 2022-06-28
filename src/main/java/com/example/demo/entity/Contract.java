@@ -9,39 +9,43 @@ import java.util.Objects;
  */
 public class Contract {
     int id;
-    String title;
+    String userName;
+    String outLevel;
     String reason;
-    int type;
+    String seriousness;
+    String beiZhu;
+    String firmPeople;
     int status;
     Date createTime;
 
     @Override
+    public String
+
+    toString() {
+        return "Contract{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", outLevel='" + outLevel + '\'' +
+                ", reason='" + reason + '\'' +
+                ", seriousness='" + seriousness + '\'' +
+                ", beiZhu='" + beiZhu + '\'' +
+                ", firmPeople='" + firmPeople + '\'' +
+                ", status=" + status +
+                ", createTime=" + createTime +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Contract contract = (Contract) o;
-        return id == contract.id && type == contract.type && status == contract.status && Objects.equals(title, contract.title) && Objects.equals(reason, contract.reason) && Objects.equals(createTime, contract.createTime);
+        return id == contract.id && status == contract.status && Objects.equals(userName, contract.userName) && Objects.equals(outLevel, contract.outLevel) && Objects.equals(reason, contract.reason) && Objects.equals(seriousness, contract.seriousness) && Objects.equals(beiZhu, contract.beiZhu) && Objects.equals(firmPeople, contract.firmPeople) && Objects.equals(createTime, contract.createTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, reason, type, status, createTime);
-    }
-
-    @Override
-    public String toString() {
-        return "Contract{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", reason='" + reason + '\'' +
-                ", type=" + type +
-                ", status=" + status +
-                ", createTime=" + createTime +
-                '}';
+        return Objects.hash(id, userName, outLevel, reason, seriousness, beiZhu, firmPeople, status, createTime);
     }
 
     public int getId() {
@@ -53,12 +57,22 @@ public class Contract {
         return this;
     }
 
-    public String getTitle() {
-        return title;
+    public String getUserName() {
+        return userName;
     }
 
-    public Contract setTitle(String title) {
-        this.title = title;
+    public Contract setUserName(String userName) {
+        this.userName = userName;
+        return this;
+
+    }
+
+    public String getOutLevel() {
+        return outLevel;
+    }
+
+    public Contract setOutLevel(String outLevel) {
+        this.outLevel = outLevel;
         return this;
 
     }
@@ -73,12 +87,32 @@ public class Contract {
 
     }
 
-    public int getType() {
-        return type;
+    public String getSeriousness() {
+        return seriousness;
     }
 
-    public Contract setType(int type) {
-        this.type = type;
+    public Contract setSeriousness(String seriousness) {
+        this.seriousness = seriousness;
+        return this;
+
+    }
+
+    public String getBeiZhu() {
+        return beiZhu;
+    }
+
+    public Contract setBeiZhu(String beiZhu) {
+        this.beiZhu = beiZhu;
+        return this;
+
+    }
+
+    public String getFirmPeople() {
+        return firmPeople;
+    }
+
+    public Contract setFirmPeople(String firmPeople) {
+        this.firmPeople = firmPeople;
         return this;
 
     }
